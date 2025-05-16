@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استمارة التسجيل - جامعة البليدة 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="university-header">
+            <img src="images/university-logo.png" alt="شعار جامعة البليدة 2" class="university-logo">
+            <h1>جامعة لونيسي علي - البليدة 2</h1>
+            <p>كلية العلوم الإنسانية والاجتماعية</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step active" id="step1">
+                <div class="step-number">1</div>
+                <div class="step-title">المعلومات الشخصية</div>
+            </div>
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <div class="step-title">اختيار القسم</div>
+            </div>
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <div class="step-title">اختيار التخصصات</div>
+            </div>
+            <div class="step" id="step4">
+                <div class="step-number">4</div>
+                <div class="step-title">تأكيد</div>
+            </div>
+        </div>
+
+        <form id="registrationForm">
+            <div class="section" id="personalInfoSection">
+                <div class="form-section-title">
+                    <i class="fas fa-user-circle me-2"></i> المعلومات الشخصية
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" id="fname" name="fname" class="form-control form-control-icon" placeholder="الاسم" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" id="lname" name="lname" class="form-control form-control-icon" placeholder="اللقب" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" id="nom" name="nom" class="form-control form-control-icon" placeholder="Nom" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" id="prenom" name="prenom" class="form-control form-control-icon" placeholder="Prénom" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            <input type="date" id="birthdate" name="birthdate" class="form-control form-control-icon" required>
+                            <label for="birthdate">تاريخ الميلاد</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                            <input type="text" id="birthplace" name="birthplace" class="form-control form-control-icon" placeholder="مكان الميلاد" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" id="email" name="email" class="form-control form-control-icon" placeholder="البريد الإلكتروني" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            <input type="tel" id="phone" name="phone" class="form-control form-control-icon" placeholder="رقم الهاتف" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                            <input type="text" id="registrationNumber" name="registration_number" class="form-control form-control-icon" placeholder="رقم التسجيل" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-footer">
+                    <div></div>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(1)">التالي <i class="fas fa-arrow-left ms-2"></i></button>
+                </div>
+            </div>
+
+            <div class="section hidden" id="departmentSection">
+                <div class="form-section-title">
+                    <i class="fas fa-university me-2"></i> اختيار القسم
+                </div>
+
+                <div class="department-selector">
+                    <div class="department-card" onclick="selectDepartment('socialSciences')">
+                        <i class="fas fa-users"></i>
+                        <h4>العلوم الاجتماعية</h4>
+                        <p>علم النفس، علوم التربية، علم الاجتماع، الديموغرافيا، الأرطوفونيا</p>
+                    </div>
+                    <div class="department-card" onclick="selectDepartment('humanities')">
+                        <i class="fas fa-book"></i>
+                        <h4>العلوم الإنسانية</h4>
+                        <p>علم الآثار، علم المكتبات، تاريخ عام، إعلام واتصال</p>
+                    </div>
+                </div>
+
+                <input type="hidden" id="department" name="department">
+
+                <div class="form-footer">
+                    <button type="button" class="btn btn-secondary" onclick="previousStep(2)"><i class="fas fa-arrow-right me-2"></i> السابق</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(2)">التالي <i class="fas fa-arrow-left ms-2"></i></button>
+                </div>
+            </div>
+
+            <div class="section hidden" id="socialSciencesSection">
+                <div class="form-section-title">
+                    <i class="fas fa-users me-2"></i> العلوم الاجتماعية - اختيار التخصصات
+                </div>
+
+                <p class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    يرجى ترتيب التخصصات حسب الأولوية من 1 إلى 5 (حيث 1 هي الأولوية الأعلى)
+                </p>
+
+                <div id="social-sciences-container"></div>
+
+                <div class="form-footer">
+                    <button type="button" class="btn btn-secondary" onclick="previousStep(3)"><i class="fas fa-arrow-right me-2"></i> السابق</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">التالي <i class="fas fa-arrow-left ms-2"></i></button>
+                </div>
+            </div>
+
+            <div class="section hidden" id="humanitiesSection">
+                <div class="form-section-title">
+                    <i class="fas fa-book me-2"></i> العلوم الإنسانية - اختيار التخصصات
+                </div>
+
+                <p class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    يرجى ترتيب التخصصات حسب الأولوية من 1 إلى 4 (حيث 1 هي الأولوية الأعلى)
+                </p>
+
+                <div id="humanities-container"></div>
+
+                <div class="form-footer">
+                    <button type="button" class="btn btn-secondary" onclick="previousStep(3)"><i class="fas fa-arrow-right me-2"></i> السابق</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">التالي <i class="fas fa-arrow-left ms-2"></i></button>
+                </div>
+            </div>
+
+            <div class="section hidden" id="confirmationSection">
+                <div class="form-section-title">
+                    <i class="fas fa-check-circle me-2"></i> تأكيد المعلومات
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    يرجى مراجعة المعلومات التالية قبل إرسال الطلب
+                </div>
+
+                <div class="subsection">
+                    <h3><i class="fas fa-user me-2"></i> المعلومات الشخصية</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>الاسم:</strong> <span id="confirm-fname"></span></p>
+                            <p><strong>اللقب:</strong> <span id="confirm-lname"></span></p>
+                            <p><strong>Nom:</strong> <span id="confirm-nom"></span></p>
+                            <p><strong>Prénom:</strong> <span id="confirm-prenom"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>تاريخ الميلاد:</strong> <span id="confirm-birthdate"></span></p>
+                            <p><strong>مكان الميلاد:</strong> <span id="confirm-birthplace"></span></p>
+                            <p><strong>البريد الإلكتروني:</strong> <span id="confirm-email"></span></p>
+                            <p><strong>رقم الهاتف:</strong> <span id="confirm-phone"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3><i class="fas fa-university me-2"></i> القسم والتخصصات</h3>
+                    <p><strong>القسم:</strong> <span id="confirm-department"></span></p>
+                    <div id="confirm-specialties"></div>
+                </div>
+
+                <div class="subsection">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="confirmAccuracy" name="confirm_accuracy" required>
+                        <label class="form-check-label" for="confirmAccuracy">
+                            أقر بأن جميع المعلومات المقدمة صحيحة وأتحمل المسؤولية الكاملة عن صحتها. وأوافق على أن أي معلومات خاطئة قد تؤدي إلى توجيهي تلقائيا.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-footer">
+                    <button type="button" class="btn btn-secondary" onclick="previousStep(4)"><i class="fas fa-arrow-right me-2"></i> السابق</button>
+                    <div>
+                        <button type="button" class="btn btn-secondary" onclick="generatePDF()">تحميل PDF</button>
+                        <button type="button" class="btn btn-primary" id="submitButton" onclick="submitForm()"><i class="fas fa-paper-plane me-2"></i> إرسال الطلب</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section hidden" id="successSection">
+                <div class="text-center">
+                    <i class="fas fa-check-circle fa-5x text-success mb-4"></i>
+                    <h2>تم إرسال طلبك بنجاح!</h2>
+                    <p>سيتم التواصل معك قريبا عبر البريد الإلكتروني</p>
+                    <p><strong>رقم الطلب المرجعي:</strong> <span id="referenceNumber"></span></p>
+                    <button type="button" class="btn btn-primary mt-4" onclick="resetForm()">
+                        <i class="fas fa-redo me-2"></i> تقديم طلب آخر
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="university-info">
+        <p>جامعة لونيسي علي - البليدة 2 © 2025</p>
+        <p>العنوان: الجامعة المركزية، الطريق الوطني رقم 1، البليدة، الجزائر</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
