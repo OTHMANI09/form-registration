@@ -306,7 +306,7 @@ function showAlert(message, type) {
 function generatePDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
-    doc.addFont('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap', 'Tajawal', 'normal');
+    doc.addFont('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap', 'Tajawal', 'normal' );
     doc.setFont('Tajawal');
     doc.setR2L(true);
 
@@ -403,7 +403,7 @@ async function submitForm() {
         
         // تحويل البيانات إلى تنسيق مناسب لـ Google Sheets
         const specialtiesFormatted = data.specialties
-            .filter(s => s.order)
+            .filter(s => s.order )
             .sort((a, b) => a.order - b.order)
             .map(s => `${s.name} (${s.order})`)
             .join(', ');
@@ -430,7 +430,9 @@ async function submitForm() {
             body: JSON.stringify(sheetData),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            mode: 'cors',
+            redirect: 'follow'
         });
         
         if (!response.ok) {
