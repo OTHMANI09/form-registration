@@ -399,7 +399,7 @@ async function submitForm() {
         }
 
         // إرسال البيانات إلى Google Sheets
-        const googleScriptURL = 'https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec';
+        const googleScriptURL = 'https://script.google.com/macros/s/AKfycbyvrMUbwJ8WTSca4C-FkP4RgJfMFrPVmJU49HNj8MtUz9yeqe44pqiw2n4fpUUJBO8h/exec';
         
         // تحويل البيانات إلى تنسيق مناسب لـ Google Sheets
         const specialtiesFormatted = data.specialties
